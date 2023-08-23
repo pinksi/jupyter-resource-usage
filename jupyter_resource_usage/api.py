@@ -106,6 +106,8 @@ class KernelUsageHandler(APIHandler):
             )
             return
 
+        config = self.settings["jupyter_resource_usage_display_config"]
+
         kernel_id = matched_part
         km = self.kernel_manager
         lkm = km.pinned_superclass.get_kernel(km, kernel_id)
@@ -138,4 +140,5 @@ class KernelUsageHandler(APIHandler):
                 res = await res
             if res:
                 res["kernel_id"] = kernel_id
+            res["content"].update({"host_usage_flag": config.show_host_usage})
             self.write(json.dumps(res, default=date_default))

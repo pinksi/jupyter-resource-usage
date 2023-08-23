@@ -129,3 +129,10 @@ class ResourceUseDisplay(Configurable):
         Set to False in order to disable reporting of Prometheus style metrics.
         """,
     ).tag(config=True)
+
+    show_host_usage = Bool(
+        default_value=False,
+        help="""
+        Set to True in order to show host cpu and host virutal memory info.
+        """,
+    ).tag(config=True)
